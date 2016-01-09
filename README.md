@@ -1,5 +1,7 @@
 # Play along
 
+Only prerequisite is to have [Elixir installed](http://elixir-lang.org/install.html)
+
 *v1.0 or greater is fine*
 
 ```bash
@@ -12,9 +14,19 @@ Elixir 1.0.5
 
 —
 
-## Getting Comfortable with the Elixir Development Environment
+# You are not alone
 
-^ When learning a new language, most people focus on syntax and design patterns.
+* Join us throughout the week on Triangle Devs Slack ([https://triangle-devs-slack-inviter.herokuapp.com](https://triangle-devs-slack-inviter.herokuapp.com)) in the **#elixir** channel
+* Weekly exercism.io Elixir exercises ([http://exercism.io/languages/elixir](http://exercism.io/languages/elixir))
+* Me @rwdaigle
+
+^ Lots of places to interact, but trying to center local Elixir community in Triangle Devs Slack room.
+
+—
+
+## Getting To Know the Elixir Development Environment
+
+^ When learning a new language, most people focus on syntax and design patterns. Leaves you unprepared for doing actual work (how create project, where do files live etc…)
 
 ^ Once have cursory understanding of syntax, I like to understand the language environment and tooling.
 
@@ -25,14 +37,16 @@ Elixir 1.0.5
 # What is a language environment?
 
 * Build tool
-* Testing framework
-* Interactive shell
 * Dependency resolution
 * Configuration management
+* Testing framework
+* Interactive shell
 
-^ Might seem scattered, but all are things you need in place before you can do anything of consequence with the language.
+^ Might seem scattered, but all support the development process
 
-^ First thing is how to create an app, what dir structure is it expecting etc… First tool: Mix
+^ These are all table-stakes for modern language - we as devs expect these utilities to be well defined so we can be productive from the start
+
+^ First thing is how to create an app, what dir structure is expected, how app is bootstrapped etc… First tool: Mix
 
 —
 
@@ -42,13 +56,13 @@ Elixir 1.0.5
 * Build utility/script runner (like Rake)
 * Dependency manager (like Bundler)
 
-^ Mix is the core command line tool of Elixir, responsible for many things
+^ You'll interact a lot with mix because it's the core command line tool of Elixir and has many responsibilities
 
 ^ Let's see how it creates projects for us
 
 —
 
-# Create new project
+# Create new project*
 
 ```bash
 $ mix help
@@ -64,19 +78,17 @@ README.md config    lib       mix.exs   test
 
 ^ Look at dir structure: config, lib and test dirs
 
-^ mix.exs: Main entrypoint for app - define apps, dependencies, metadata
+^ mix.exs: Main entrypoint for app - define sub-apps (Elixir project can have many sub-apps, all composed as a single system), dependencies, metadata
 
-^ Compile w/ `mix compile`, look at `_build` for build artifacts. Erlang VM code. Elixir compiles to Erlang bytecode. Important b/c have Erlang app.
+^ Compile w/ `mix compile`, look at `_build` for build artifacts. Erlang VM code. Elixir compiles to Erlang bytecode.
 
 ^ mix test
 
-^ Other frameworks plug into mix to provide project generators: E.g., `mix phoenix.new` for Phoenix apps
-
-^ Test provide convenient way to get some code executing, so start there
+^ Tests provide convenient way to get some code executing, so go there next
 
 —
 
-# Test
+# Test*
 
 ```elixir
 # test/triangle_test.exs
@@ -94,13 +106,13 @@ $ mix test
 def area(base, height), do: base * height / 2
 ```
 
-^ Edit `triangle_test.exs`. `exs` extension means script, no build artifacts
+^ Edit `triangle_test.exs`. `ExUnit` is Elixir's unit testing framework
 
 ^ `area` function uses single-line body. Common when simple body definitions
 
 ^ Can also run individual tests: `mix test test/triangle_test.exs:4`
 
-^ Tests are good to quickly run code, but sometimes need more ad-hoc environment to play in…
+^ Tests are great way to exercise your project, but sometimes need more ad-hoc environment to play in…
 
 —
 
@@ -114,7 +126,7 @@ def area(base, height), do: base * height / 2
 
 —
 
-# IEx playground
+# IEx playground*
 
 ```bash
 $ iex
@@ -130,11 +142,19 @@ $ iex -S mix
 > Triangle.area 2, 3
 ```
 
-^ Start IEx w/ `iex`. Do `a = 1`. Do `h` to show helpers
+^ Start IEx w/ `iex`. Do `a = 1`
 
-^ `h Enum.<tab>` to show tab-completion. `ls` to see FS. Very friendly, navigable environment.
+^ Do `h` to show helpers
 
-^ `c "lib/triangle.ex"` to compile and load sample app. `Triangle.area 2, 3`. Edit triangle.ex, and `r Triangle` to get updated def.
+^ `h Enum.<tab>` to show tab-completion
+
+^ `ls` to see FS
+
+^ `v 1` to get previous evaluations. Very friendly, navigable environment.
+
+^ `c "lib/triangle.ex"` to compile and load sample app. `Triangle.area 2, 3`
+
+^ Edit triangle.ex, and `r Triangle` to get updated def.
 
 ^ Ctrl-C, Ctrl-C to quit
 
@@ -149,7 +169,7 @@ $ iex -S mix
 
 —
 
-# Print to stdout
+# Print to stdout*
 
 ```elixir
 def area(base, height) do
@@ -166,17 +186,13 @@ end
 
 —
 
-# Attached shell
-
-Add `IEx.pry` statement
+# Attached shell*
 
 ```elixir
+# triangle.ex
 require IEx
-
 def area(base, height), do: IEx.pry && base * height / 2
 ```
-
-Get access to local scope:
 
 ```bash
 $ iex -S mix
@@ -202,7 +218,7 @@ pry(2)> respawn
 
 —
 
-# Add dependency
+# Add dependency*
 
 ```elixir
 # triangle.ex
@@ -252,7 +268,7 @@ $ mix deps.get
 
 —
 
-# Using config values
+# Using config values*
 
 ```elixir
 # config/config.ex
@@ -294,7 +310,7 @@ end
 
 —
 
-# Environment configuration
+# Environment configuration*
 
 ```bash
 $ touch config/dev.exs config/test.exs
