@@ -317,6 +317,11 @@ $ touch config/dev.exs config/test.exs
 ```
 
 ```elixir
+# config/config.exs
+import_config "#{Mix.env}.exs"
+```
+
+```elixir
 # config/dev.exs
 use Mix.Config
 config :triangle, :default_length, 3
@@ -338,26 +343,15 @@ config :triangle, :default_length, 2
 
 ^ I find config/Application.get_env/System.env to be a bit confusing due to the overloading of "environment".
 
-<!--
+—
 
-# Your own tasks
+# Bye
 
-Create poor man's CLI, tasks can help
-In triangle.ex
 
-```elixir
-defmodule Mix.Tasks.Triangle.Area do
-  use Mix.Task
+This talk/script can be found at:
 
-  def run([base, height]) do
-    {base, _} = Float.parse(base)
-    {height, _} = Float.parse(height)
-    Mix.bash.info to_string(Triangle.area({base, height}))
-  end
-end
-```
+> [https://github.com/rwdaigle/elixir-environment-basics](https://github.com/rwdaigle/elixir-environment-basics)
 
-```bash
-$ mix triangle.area 4 9
-```
--->
+I can be found
+
+> @rwdaigle

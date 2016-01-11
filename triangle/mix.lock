@@ -1,0 +1,2 @@
+%{"logfmt": {:hex, :logfmt, "3.0.2"},
+  "metrix": {:hex, :metrix, "0.2.0"}}
