@@ -1,3 +1,10 @@
+
+![](http://share.ryandaigle.com/cpyq2-20160115205848.png)
+
+(best viewed w/ Deckset, generated [slides here](slides.pdf))
+
+---
+
 # Play along
 
 Only prerequisite is to have [Elixir installed](http://elixir-lang.org/install.html)
